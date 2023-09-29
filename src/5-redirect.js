@@ -1,4 +1,15 @@
-import { Switch,Route, Link } from "react-router-dom";
+import { Switch,Route, Link, Redirect } from "react-router-dom";
+
+const Portafolio = ()=> {
+    const loggedIn = false
+    if(!loggedIn){
+        return <Redirect push to="/"/>
+    }
+
+    return(
+        <h1>Portafolio</h1>
+    )
+}
 
 function App() {
   return (
@@ -11,18 +22,22 @@ function App() {
           <li>
             <Link to="/perfil">Perfil</Link>
           </li>
+          <li>
+            <Link to="/portafolio">Portafolio</Link>
+          </li>
         </ul>
       </nav>
       <section>
         <Switch>
-          <Route exact path="/">
+            <Redirect exact from="/" to="/inicio"/>
+          <Route exact path="/inicio">
            <h1>Inicio</h1>
           </Route>
           <Route exact path="/perfil">
             <h1>Perfil</h1>
           </Route>
-          <Route path="*">
-            <h1>404: ruta no encontrada</h1>
+          <Route path="/portafolio">
+            <Portafolio/>
           </Route>
         </Switch>       
       </section>
